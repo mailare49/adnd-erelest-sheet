@@ -1,0 +1,573 @@
+/* Tab system */
+input.sheet-tab1:checked ~ div.sheet-tab1,
+input.sheet-tab2:checked ~ div.sheet-tab2,
+input.sheet-tab3:checked ~ div.sheet-tab3
+{
+    display: block;
+}
+
+input.sheet-tab
+{
+    width: 150px;
+    height: 40px;
+    left: 6px;
+    margin: 0px -1.5px;
+    cursor: pointer;
+    z-index: 1;
+    border: 5px solid #000000;
+}
+
+input.sheet-tab::before
+{
+    content: attr(title);
+    text-align: center;
+    display: inline-block;
+
+    background: #fff;
+    color: black;
+    font-family:GreatVibesRegular;
+
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+
+    border: 2px solid #000000;
+}
+
+input.sheet-tab:checked::before
+{
+    background: black;
+    color: white;
+
+    border: 2px solid #000000;
+}
+
+div.sheet-tab-content
+{
+    width:830px;
+    margin: 2px 0 0 5px;
+    padding: 5px;
+}
+
+div.sheet-tab2
+{
+    background-color: white;
+}
+
+div.sheet-tab3
+{
+    background-color: white;
+}
+
+div.sheet-tab-content
+{
+    display: none;
+}
+/* End of tab system */
+
+/* Others */
+.sheet-space {
+    border: none;
+    background: transparent;
+}
+
+/* Frames */
+.sheet-frame {
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+}
+
+.sheet-littleFrame {
+    border: 1px solid black;
+    width: 32%;
+    height: auto;
+    margin: 0px;
+}
+
+.sheet-abilityFrame {
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+}
+
+/* Inputs */
+.sheet-noBorder{
+    border: none;
+    width: 90%;
+    background: transparent;
+}
+
+.sheet-littleCharTextbox {
+    background: transparent;
+    border-radius: 0px;
+    border-top: none;
+    border-left:none;
+    border-right:none;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 65%;
+}
+
+input[type=number].sheet-littleStatbox {
+    background: transparent;
+    border-radius: 0px;
+    border-top: none;
+    border-left:none;
+    border-right:none;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 25%;
+}
+
+input[type=number].sheet-framedStatbox {
+    background: transparent;
+    border-radius: 0px;
+    border-top: 1px solid black;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 40px;
+}
+
+input[type=number].sheet-hpStatbox {
+    background: transparent;
+    border-radius: 0px;
+    border-top: 1px solid black;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 60%;
+    height: 40px;
+}
+
+input[type=text].sheet-abilityStatbox {
+    background: transparent;
+    border-radius: 0px;
+    border-top: 1px solid black;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 30px;
+}
+
+input[type=number].sheet-abilityStatbox {
+    background: transparent;
+    border-radius: 0px;
+    border-top: 1px solid black;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 30px;
+}
+
+input[type=text].sheet-savingThrowStatbox {
+    background: transparent;
+    border-radius: 15px;
+    border-top: 1px solid black;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow:none;
+    color: black;
+    width: 30px;
+}
+
+/* Labels and titles */
+.sheet-littleLabel {
+    font-size: small;
+    color: black;
+}
+
+.sheet-title
+{
+    text-align: left;
+    color: black;
+    width: 100%;
+    font-size: 20pt;
+    font-weight:bolder;
+}
+
+.sheet-subtitle
+{
+    text-align: center;
+    color: black;
+    width: 100%;
+    font-size: 11pt;
+    font-weight:bolder;
+}
+
+.sheet-littleSubtitle
+{
+    text-align: center;
+    color: black;
+    width: 100%;
+    font-size: 8pt;
+    font-weight:bolder;
+}
+
+.sheet-attributeName
+{
+    text-align: center;
+    color: black;
+    width: 100%;
+    font-size: 7pt;
+    text-overflow: ellipsis;
+}
+
+.sheet-abilityName
+{
+    text-align: justify;
+    color: black;
+    width: 100%;
+    font-size: 7pt;
+}
+
+/* Flexbox */
+.sheet-3flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sheet-char {
+    flex: 0 0 100%;
+}
+
+/* Grid areas names sheet1*/
+.sheet-hp {
+    grid-area: hp;
+    border: 1px solid black;
+    width: 98.5%;
+    height: auto;
+}
+
+.sheet-armor {
+    grid-area: armor;
+    border: 1px solid black;
+    width: 99.75%;
+    height: auto;
+}
+
+.sheet-movement {
+    grid-area: mvm;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-weapOfProf {
+    grid-area: wop;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-weapons {
+    grid-area: weap;
+    border: 1px solid black;
+    width: 99.75%;
+    height: auto;
+}
+
+.sheet-languages {
+    grid-area: lang;
+    border: 1px solid black;
+    width: 98.5%;
+    height: auto;
+}
+
+.sheet-senses {
+    grid-area: sens;
+    border: 1px solid black;
+    width: 98.5%;
+    height: auto;
+}
+
+.sheet-detect {
+    grid-area: det;
+    border: 1px solid black;
+    width: 98.5%;
+    height: auto;
+}
+
+.sheet-otherAbil {
+    grid-area: otAb;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-turningUndead {
+    grid-area: turUn;
+    border: 1px solid black;
+    width: 98.5%;
+    height: auto;
+}
+
+.sheet-psionics {
+    grid-area: psio;
+    border: 1px solid black;
+    width: 99.5%;
+    height: auto;
+}
+
+.sheet-curses {
+    grid-area: curs;
+    border: 1px solid black;
+    border: 1px solid black;
+    width: 98%;
+    height: auto;
+}
+
+.sheet-specAbil {
+    grid-area: spAb;
+    border: 1px solid black;
+    border: 1px solid black;
+    width: 98%;
+    height: auto;
+}
+
+/* Grid areas names sheet2*/
+.sheet-equipment {
+    grid-area: eqp;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-magicalItems {
+    grid-area: mgi;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-wealth {
+    grid-area: wth;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-spellComponents {
+    grid-area: spc;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-encumbrance {
+    grid-area: enc;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+/* Grid areas names sheet3*/
+.sheet-genderAge {
+    grid-area: gag;
+    border: none;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-generalAppearance {
+    grid-area: gap;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-physicalDescription {
+    grid-area: phd;
+    border: none;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-distinguishMarks {
+    grid-area: dim;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-childhood {
+    grid-area: chi;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-history {
+    grid-area: his;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-recentEvents {
+    grid-area: rev;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-achievements {
+    grid-area: ach;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-virtues {
+    grid-area: vir;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-vices {
+    grid-area: vic;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-fears {
+    grid-area: fea;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-likes {
+    grid-area: lik;
+    border: 1px solid black;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-dislikes {
+    grid-area: dli;
+    border: 1px solid black;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-portrait {
+    grid-area: por;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-allyFactions {
+    grid-area: alf;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-enemyFactions {
+    grid-area: enf;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-myFactionGuild {
+    grid-area: myf;
+    border: 1px solid black;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+.sheet-animalsCompanions {
+    grid-area: anc;
+    border: 1px solid black;
+    border: 1px solid black;
+    width: 99%;
+    height: auto;
+}
+
+/* Grid area wrapper*/
+.sheet-wrapper {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-template-areas: 
+        "hp   armor armor armor  armor  mvm   mvm"
+        "hp   armor armor armor  armor  wop   wop"
+        "hp   armor armor armor  armor  wop   wop"
+        "hp   weap  weap  weap   weap   weap  weap"
+        "hp   weap  weap  weap   weap   weap  weap"
+        "hp   weap  weap  weap   weap   weap  weap"
+        "hp   weap  weap  weap   weap   weap  weap"
+        "hp   weap  weap  weap   weap   weap  weap"
+        "hp   weap  weap  weap   weap   weap  weap"
+        "lang sens  sens  otAb   otAb   otAb  otAb"
+        "lang det   det   otAb   otAb   otAb  otAb"
+        "lang det   det   otAb   otAb   otAb  otAb"
+        "lang det   det   turUn  turUn  turUn turUn"
+        "lang det   det   turUn  turUn  turUn turUn"
+        "psio psio  psio  psio   psio   curs  spAb"
+        "psio psio  psio  psio   psio   curs  spAb"
+        "psio psio  psio  psio   psio   curs  spAb"
+        "psio psio  psio  psio   psio   curs  spAb"
+        "psio psio  psio  psio   psio   curs  spAb";
+}
+
+.sheet-wrapper2 {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-template-areas: 
+        "eqp eqp eqp mgi mgi"
+        "eqp eqp eqp mgi mgi"
+        "eqp eqp eqp mgi mgi"
+        "eqp eqp eqp wth wth"
+        "eqp eqp eqp wth wth"
+        "eqp eqp eqp wth wth"
+        "eqp eqp eqp spc spc"
+        "enc enc enc spc spc"
+        "enc enc enc spc spc";
+}
+
+.sheet-wrapper3 {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-template-areas: 
+        "gag gag gag gag por por"
+        "gag gag gag gag por por"
+        "gap gap phd phd por por"
+        "gap gap phd phd por por"
+        "gap gap phd phd por por"
+        "dim dim phd phd por por"
+        "dim dim phd phd alf enf"
+        "chi chi vir vir alf enf"
+        "chi chi vic vic myf myf"
+        "his his fea fea anc anc"
+        "his his lik lik anc anc"
+        "rev rev lik lik anc anc"
+        "ach ach dli dli anc anc";
+}
