@@ -1079,3 +1079,81 @@
     </div>
 </div>
 <!--End Tab3-->
+
+<!--Sheetworkers script-->
+<script type="text/worker">
+    /* ===== PARAMETERS ==========
+	destinations = the name of the attribute that stores the total quantity
+        		   can be a single attribute, or an array: ['total_cost', 'total_weight']
+        		   If more than one, the matching fields must be in the same order. 
+    section = name of repeating fieldset, without the repeating_
+    fields = the name of the attribute field to be summed
+          	 destination and fields both can be a single attribute: 'weight'
+          	 or an array of attributes: ['weight','number','equipped']
+	*/
+	
+	//Fonction repeatingSum
+	const repeatingSum = (destinations, section, fields) => {
+		if (!Array.isArray(destinations)) destinations = [destinations.replace(/\s/g, '').split(',')];
+		if (!Array.isArray(fields)) fields = [fields.replace(/\s/g, '').split(',')];
+		getSectionIDs(`repeating_${section}`, idArray => {
+			const attrArray = idArray.reduce((m, id) => [...m, ...(fields.map(field => `repeating_${section}_${id}_${field}`))], []);
+			getAttrs([...attrArray], v => {
+				const getValue = (section, id, field) => v[`repeating_${section}_${id}_${field}`] === 'on' ? 1 : parseFloat(v[`repeating_${section}_${id}_${field}`]) || 0;
+				const commonMultipliers = (fields.length <= destinations.length) ? [] : fields.splice(destinations.length, fields.length - destinations.length);
+				const output = {};
+				destinations.forEach((destination, index) => {
+					output[destination] = idArray.reduce((total, id) => total + getValue(section, id, fields[index]) * commonMultipliers.reduce((subtotal, mult) => subtotal * getValue(section, id, mult), 1), 0);
+				});
+				setAttrs(output);
+			}); 
+		}); 
+	};
+
+	//Calcul poids porté
+	on('change:repeating_equipmentCarried change:repeating_magicalItems change:repeating_wealth change:repeating_spellComponents change:platinumCarried change:goldCarried change:electrumCarried change:silverCarried change:copperCarried', function() {
+		repeatingSum("totalEqpEncumbrance","equipmentCarried", "encumbrance");
+		repeatingSum("totalMagicalItemEncumbrance","magicalItems", "encumbrance");
+		repeatingSum("totalWealthEncumbrance", "wealth", "encumbrance");
+		repeatingSum("totalSpellComponentsEncumbrance","spellComponents", ["encumbrance", "quantity"]);
+		getAttrs(['totalEqpEncumbrance','totalMagicalItemEncumbrance','totalWealthEncumbrance', 'totalSpellComponentsEncumbrance', 'platinumCarried', 'goldCarried', 'electrumCarried', 'silverCarried', 'copperCarried'], function(values){
+			var EqpWeight = parseInt(values.totalEqpEncumbrance);
+			var MagicWeight = parseInt(values.totalMagicalItemEncumbrance);
+			var WealthWeight = parseInt(values.totalWealthEncumbrance) + parseInt(values.platinumCarried) + parseInt(values.goldCarried) + parseInt(values.electrumCarried) + parseInt(values.silverCarried) + parseInt(values.copperCarried);
+			var SpellCompWeight = parseInt(values.totalSpellComponentsEncumbrance);
+			
+			setAttrs({
+				totalEncumbrance: EqpWeight+MagicWeight+WealthWeight+SpellCompWeight
+            });
+		});
+	});
+
+    on('change:repeating_equipmentCarried remove:repeating_equipmentCarried', function() {
+		repeatingSum("totalEqpEncumbrance","equipmentCarried", "encumbrance");
+	});
+
+    on('change:repeating_magicalItems remove:repeating_magicalItems', function() {
+		repeatingSum("totalMagicalItemEncumbrance","magicalItems", "encumbrance");
+	});
+
+	on('change:repeating_wealth remove:repeating_wealth', function() {
+		repeatingSum("totalWealthEncumbrance", "wealth", "encumbrance");
+	});
+
+	on('change:repeating_spellComponents remove:repeating_spellComponents', function() {
+		repeatingSum("totalSpellComponentsEncumbrance","spellComponents", ["encumbrance", "quantity"]);
+	});
+
+	on('change:totalEqpEncumbrance change:totalMagicalItemEncumbrance change:totalWealthEncumbrance change:totalSpellComponentsEncumbrance change:platinumCarried change:goldCarried change:electrumCarried change:silverCarried change:copperCarried', function() {
+		getAttrs(['totalEqpEncumbrance','totalMagicalItemEncumbrance','totalWealthEncumbrance','totalSpellComponentsEncumbrance', 'platinumCarried', 'goldCarried', 'electrumCarried', 'silverCarried', 'copperCarried'], function(values){
+			var EqpWeight = parseInt(values.totalEqpEncumbrance);
+			var MagicWeight = parseInt(values.totalMagicalItemEncumbrance);
+			var WealthWeight = parseInt(values.totalWealthEncumbrance) + parseInt(values.platinumCarried) + parseInt(values.goldCarried) + parseInt(values.electrumCarried) + parseInt(values.silverCarried) + parseInt(values.copperCarried);
+			var SpellCompWeight = parseInt(values.totalSpellComponentsEncumbrance);
+			
+			setAttrs({
+				totalEncumbrance: EqpWeight+MagicWeight+WealthWeight+SpellCompWeight
+            });
+        });
+	});
+</script>
